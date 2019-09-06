@@ -23,23 +23,25 @@ const handle_me_desculpa_joao = msg => {
 const handle_prefix = msg => {
   var message = msg.content.replace("!!", "");
 
-  console.log(message);
-
   if (message.startsWith("help")) {
     help_message(msg);
   } else if (message.startsWith("kick")) {
-    if(msg.content.includes(JOAO_ID))
+    if (msg.content.includes(JOAO_ID))
       msg.channel.send("Tu tem moral aqui não, mizera");
-    else{
+    else {
       let member = msg.mentions.members.first();
 
-      member.kick().then(() => {
-        msg.channel.send(`Tá fazendo o que aqui, ${member.displayName}? Vaza!`);
-      }).catch(err => {
-        msg.reply("Mermão, to com vontade agora n. Depois eu faço.");
-      })
+      member
+        .kick()
+        .then(() => {
+          msg.channel.send(
+            `Tá fazendo o que aqui, ${member.displayName}? Vaza!`
+          );
+        })
+        .catch(err => {
+          msg.reply("Mermão, to com vontade agora n. Depois eu faço.");
+        });
     }
-    
   } else if (message.startsWith(`record`)) {
     msg.reply(":craig:, entrar");
   } else if (message.startsWith(`end`)) {
@@ -47,7 +49,7 @@ const handle_prefix = msg => {
   } else if (message.startsWith(`screen`)) {
     msg.channel.send(screen_share);
   } else if (message.toUpperCase().startsWith("AMON")) {
-    msg.channel.send(AMON_ID);
+    msg.channel.send(amon);
   }
   return true;
 };
@@ -57,7 +59,8 @@ const handle_message = msg => {
     handle_prefix(msg);
   } else if (msg.content.includes("meu patrão")) {
     msg.reply(
-      "Se eu sou seu patrão, vc eh meu escravo. Vá trabalhar, vagabundo do carai!"
+      "Se eu sou seu patrão, vc eh meu escravo.\
+       Vá trabalhar, vagabundo do carai!"
     );
   } else if (handle_me_desculpa_joao(msg)) {
     msg.channel.send(`!!kick ${msg.author}`);

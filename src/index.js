@@ -12,5 +12,4 @@ bot.on("message", msg => {
   handle_message(msg);
 });
 
-
 bot.login(token);
