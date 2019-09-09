@@ -1,5 +1,5 @@
 import { prefix } from "./config.json";
-import { screen_share, help, amon, JOAO_ID } from "./Utils";
+import { screen_share, help, amon, JOAO_ID, deborah_prato, STEFANO_ID } from "./Utils";
 
 const help_message = msg => {
   msg.channel.send(help);
@@ -50,6 +50,10 @@ const handle_prefix = msg => {
     msg.channel.send(screen_share);
   } else if (message.toUpperCase().startsWith("AMON")) {
     msg.channel.send(amon);
+  } else if (message.toUpperCase().startsWith("PRATOS")){
+    msg.channel.send(deborah_prato);
+  } else if(message.toUpperCase().startsWith("STFN")){
+    msg.channel.send(`Fala, torneirinha ${STEFANO_ID}`);
   }
   return true;
 };
