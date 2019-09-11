@@ -5,7 +5,7 @@ import handle_message from "./messageHandler";
 const bot = new Discord.Client();
 
 bot.once("ready", () => {
-  console.log("Running...");
+  console.log("Started...");
 });
 
 bot.on("message", msg => {

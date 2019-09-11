@@ -1,4 +1,3 @@
-import { prefix } from "./config.json";
 import { screen_share, help, amon, JOAO_ID, deborah_prato, STEFANO_ID, FRASES_DO_DIA } from "./Utils";
 
 const help_message = msg => {
@@ -42,12 +41,20 @@ const handle_prefix = msg => {
           msg.reply("Mermão, to com vontade agora n. Depois eu faço.");
         });
     }
-  } else if (message.toUpperCase().startsWith(`record`)) {
+  } else if (message.toUpperCase().startsWith(`RECORD`)) {
     msg.reply(":craig:, entrar");
-  } else if (message.toUpperCase().startsWith(`end`)) {
+  } else if (message.toUpperCase().startsWith(`END`)) {
     msg.reply(":craig:, sair");
-  } else if (message.toUpperCase().startsWith(`screen`)) {
-    msg.channel.send(screen_share);
+  } else if (message.toUpperCase().startsWith(`SCREEN`)) {
+    let member = msg.member.voiceChannel.toString();
+    var memberChannel = member.substring(2, (member.length - 1));
+
+    var screen_link = screen_share.filter((channel) =>{
+      return channel.includes(memberChannel);
+    });
+
+    msg.reply("Toma o link aí: " + screen_link[0]);
+
   } else if (message.toUpperCase().startsWith("AMON")) {
     msg.channel.send(amon);
   } else if (message.toUpperCase().startsWith("PRATOS")){
@@ -55,8 +62,9 @@ const handle_prefix = msg => {
   } else if(message.toUpperCase().startsWith("STFN")){
     msg.channel.send(`Fala, torneirinha ${STEFANO_ID}`);
   } else if(message.toUpperCase().startsWith("FRASEDODIA")){
-    var index = Math.floor(Math.random() * FRASES_DO_DIA.length + 1);
+    var index = Math.floor(Math.random() * FRASES_DO_DIA.length);
     msg.reply(FRASES_DO_DIA[index]);
+
   }
   return true;
 };

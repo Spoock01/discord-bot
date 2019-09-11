@@ -1,24 +1,23 @@
 const screen_share =
-  "https://discordapp.com/channels/585955575284760725/585958284813664256 - EuroTruck\n\
-https://discordapp.com/channels/585955575284760725/585955575787945987 - Geral\n\
-https://discordapp.com/channels/585955575284760725/594308781106659345 - Dota\n\
-https://discordapp.com/channels/585955575284760725/602198275419799600 - Astroneer\n\
-https://discordapp.com/channels/585955575284760725/585956960927612928 - CS\n\
-https://discordapp.com/channels/585955575284760725/586697423313829889 - Don't Starve\n\
-https://discordapp.com/channels/585955575284760725/585957151747604499 - Pubg\n\
-https://discordapp.com/channels/585955575284760725/585958168165613588 - Paladins\n\
-https://discordapp.com/channels/585955575284760725/585957180490907703 - Pubg lite\n\
-https://discordapp.com/channels/585955575284760725/585956959488966662 - Rocket League\n";
+[
+"https://discordapp.com/channels/585955575284760725/585958284813664256",
+"https://discordapp.com/channels/585955575284760725/585955575787945987",
+"https://discordapp.com/channels/585955575284760725/594308781106659345",
+"https://discordapp.com/channels/585955575284760725/602198275419799600",
+"https://discordapp.com/channels/585955575284760725/585956960927612928",
+"https://discordapp.com/channels/585955575284760725/586697423313829889",
+"https://discordapp.com/channels/585955575284760725/585957151747604499",
+"https://discordapp.com/channels/585955575284760725/585958168165613588",
+"https://discordapp.com/channels/585955575284760725/585957180490907703",
+"https://discordapp.com/channels/585955575284760725/585956959488966662",
+]
+
 
 const help =
   "\
-Antes de qualquer comando use !!\n \
+Use !! antes de qualquer comando! \n \
 \n Lista de Comandos \n\n\
-record = Craig Record\n\
-end = End Craig Record\n\
-screen = Link pra telar\n\
-kick @user = Pra kikar alguém\n\
-amon\n \
+record, end, screen, kick @nick, amon, frasedodia\n\
 ";
 
 const AMON_ID = "<@281240158836097025>";
@@ -43,7 +42,9 @@ const amon = `${AMON_ID} https://instagram.fjpa1-1.fna.fbcdn.net/vp/bd4c85fa0a12
 
 
 var FRASES_DO_DIA = [
-  "Com calma e jeito chega-se ao cu de qualquer sujeito."
+  "Com calma e jeito chega-se ao cu de qualquer sujeito. - Amon, 2019",
+  "Uma coisa que acaba com meu dia é a noite.",
+  "O cereal preferido do vampiro é a Aveia."
 ];
 
 export {
