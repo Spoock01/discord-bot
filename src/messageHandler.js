@@ -1,5 +1,5 @@
 import { prefix } from "./config.json";
-import { screen_share, help, amon, JOAO_ID, deborah_prato, STEFANO_ID } from "./Utils";
+import { screen_share, help, amon, JOAO_ID, deborah_prato, STEFANO_ID, FRASES_DO_DIA } from "./Utils";
 
 const help_message = msg => {
   msg.channel.send(help);
@@ -42,11 +42,11 @@ const handle_prefix = msg => {
           msg.reply("Mermão, to com vontade agora n. Depois eu faço.");
         });
     }
-  } else if (message.startsWith(`record`)) {
+  } else if (message.toUpperCase().startsWith(`record`)) {
     msg.reply(":craig:, entrar");
-  } else if (message.startsWith(`end`)) {
+  } else if (message.toUpperCase().startsWith(`end`)) {
     msg.reply(":craig:, sair");
-  } else if (message.startsWith(`screen`)) {
+  } else if (message.toUpperCase().startsWith(`screen`)) {
     msg.channel.send(screen_share);
   } else if (message.toUpperCase().startsWith("AMON")) {
     msg.channel.send(amon);
@@ -54,6 +54,9 @@ const handle_prefix = msg => {
     msg.channel.send(deborah_prato);
   } else if(message.toUpperCase().startsWith("STFN")){
     msg.channel.send(`Fala, torneirinha ${STEFANO_ID}`);
+  } else if(message.toUpperCase().startsWith("FRASEDODIA")){
+    var index = Math.floor(Math.random() * FRASES_DO_DIA.length + 1);
+    msg.reply(FRASES_DO_DIA[index]);
   }
   return true;
 };

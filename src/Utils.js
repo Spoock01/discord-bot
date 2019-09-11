@@ -41,6 +41,11 @@ const BOT_FAZ_DE_TUDO = "<@619256163900588051>";
 const deborah_prato = `Venha fazer seu trabalho, ${DEBORAH_ID}! https://i.imgur.com/6atgasg.jpg`;
 const amon = `${AMON_ID} https://instagram.fjpa1-1.fna.fbcdn.net/vp/bd4c85fa0a122541ce2ba498c220dff1/5DF14C5C/t51.2885-15/e35/38789722_456161948216894_7148504665349792788_n.jpg?_nc_ht=instagram.fjpa1-1.fna.fbcdn.net&_nc_cat=102`;
 
+
+var FRASES_DO_DIA = [
+  "Com calma e jeito chega-se ao cu de qualquer sujeito."
+];
+
 export {
   THIAGO_ID,
   JOAO_ID,
@@ -59,5 +64,8 @@ export {
   JOAOVITOR_ID,
   PEDRO_ID,
   STEFANO_ID,
-  deborah_prato
+  deborah_prato,
+  FRASES_DO_DIA
 };
+
+
