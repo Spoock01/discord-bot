@@ -13,3 +13,5 @@ bot.on("message", msg => {
 });
 
 bot.login(token);
+
+export default bot;
