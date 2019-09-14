@@ -44,6 +44,7 @@ const playSound = (msg, path) => {
         });
       })
       .catch(err => {
+        console.log(err);
         msg.reply("Ainda n");
       });
   }
