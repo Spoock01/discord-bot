@@ -37,6 +37,7 @@ const playSound = (msg, path) => {
     voiceChannel
       .join()
       .then(connection => {
+        console.log(__dirname + path);
         const dispatcher = connection.playFile(__dirname + path);
         dispatcher.on("end", end => {
           voiceChannel.leave();
