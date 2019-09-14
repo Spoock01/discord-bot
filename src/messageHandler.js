@@ -27,6 +27,27 @@ const help_message = msg => {
   msg.channel.send(help);
 };
 
+const playSound = (msg, path) => {
+  var isReady = true;
+
+  if (isReady) {
+    isReady = false;
+
+    var voiceChannel = msg.member.voiceChannel;
+    voiceChannel
+      .join()
+      .then(connection => {
+        const dispatcher = connection.playFile(__dirname + path);
+        dispatcher.on("end", end => {
+          voiceChannel.leave();
+        });
+      })
+      .catch(err => {
+        msg.reply("Ainda n");
+      });
+  }
+};
+
 const handle_me_desculpa_joao = msg => {
   var isThisMessage = false;
 
@@ -75,6 +96,8 @@ const handle_prefix = async msg => {
       return channel.includes(memberChannel);
     });
     msg.reply("Toma o link aí: " + screen_link[0]);
+  } else if (message.startsWith("AMON2")) {
+    playSound(msg, "/audio/CaioAmonTomarNoCu.mp3");
   } else if (message.startsWith("AMON")) {
     msg.channel.send(amon);
   } else if (message.startsWith("PRATOS")) {
