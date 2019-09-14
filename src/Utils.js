@@ -40,7 +40,9 @@ const amon = `${AMON_ID} https://instagram.fjpa1-1.fna.fbcdn.net/vp/bd4c85fa0a12
 var FRASES_DO_DIA = [
   "Com calma e jeito chega-se ao cu de qualquer sujeito. - Amon, 2019",
   "Uma coisa que acaba com meu dia é a noite.",
-  "O cereal preferido do vampiro é a Aveia."
+  "O cereal preferido do vampiro é a Aveia.",
+  "A vida é um picolé que a morte chupa.",
+  "Cada dia a mais é um dia a menos"
 ];
 
 const rand_int = range => {
