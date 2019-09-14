@@ -27,22 +27,25 @@ const help_message = msg => {
   msg.channel.send(help);
 };
 
-const playSound = (msg, path) => {
+const playSound = async msg => {
   var isReady = true;
 
   if (isReady) {
     isReady = false;
 
     var voiceChannel = msg.member.voiceChannel;
-    voiceChannel
+
+    await voiceChannel
       .join()
       .then(connection => {
-        console.log(__dirname + path);
-        const dispatcher = connection.playFile(__dirname + path);
-        msg.reply("Playing....");
-        dispatcher.on("end", end => {
-          voiceChannel.leave();
-        });
+        // console.log(__dirname + path);
+        connection
+          .playArbitraryInput(
+            "https://github.com/Spoock01/discord-bot/blob/master/src/audio/CaioAmonTomarNoCu.mp3"
+          )
+          .on("end", end => {
+            voiceChannel.leave();
+          });
       })
       .catch(err => {
         console.log(err);
