@@ -1,3 +1,5 @@
+const server_link = "https://discordapp.com/channels/";
+
 const screen_share = [
   "https://discordapp.com/channels/585955575284760725/585958284813664256",
   "https://discordapp.com/channels/585955575284760725/585955575787945987",
@@ -69,5 +71,6 @@ export {
   STEFANO_ID,
   deborah_prato,
   FRASES_DO_DIA,
-  rand_int
+  rand_int,
+  server_link
 };

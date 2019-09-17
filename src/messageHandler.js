@@ -6,7 +6,8 @@ import {
   deborah_prato,
   STEFANO_ID,
   FRASES_DO_DIA,
-  rand_int
+  rand_int,
+  server_link
 } from "./Utils";
 import axios from "axios";
 
@@ -69,34 +70,50 @@ const handle_prefix = async msg => {
 
   if (message.startsWith("HELP")) return help_message(msg);
   else if (message.startsWith("KICK")) {
-    if (msg.content.includes(JOAO_ID))
-      msg.channel.send("Tu tem moral aqui não, mizera");
-    else {
-      let member = msg.mentions.members.first();
+    let member = msg.mentions.members.first();
 
-      member
-        .kick()
-        .then(() => {
-          msg.channel.send(
-            `Tá fazendo o que aqui, ${member.displayName}? Vaza!`
-          );
-        })
-        .catch(err => {
-          msg.reply("Mermão, to com vontade agora n. Depois eu faço.");
-        });
+    if (member === undefined)
+      msg.reply(
+        "Tu tá querendo kickar um fantasma? Animal do carai. Bota o nick do mizera aí"
+      );
+    else {
+      var memberId = member.id;
+      var creatorID = JOAO_ID.substring(2, JOAO_ID.length - 1);
+
+      if (memberId == creatorID) {
+        msg.reply(
+          "Tu tem moral pra kickar meu criador n, seu mizera. Vá tomar no seu cu!"
+        );
+      } else {
+        member
+          .kick()
+          .then(() => {
+            msg.channel.send(
+              `Tá fazendo o que aqui, ${member.displayName}? Vaza!`
+            );
+          })
+          .catch(err => {
+            msg.reply("Mermão, to com vontade agora n. Depois eu faço.");
+          });
+      }
     }
   } else if (message.startsWith(`RECORD`)) {
     msg.reply(":craig:, entrar");
   } else if (message.startsWith(`END`)) {
     msg.reply(":craig:, sair");
   } else if (message.startsWith(`SCREEN`)) {
-    let member = msg.member.voiceChannel.toString();
-    var memberChannel = member.substring(2, member.length - 1);
-
-    var screen_link = screen_share.filter(channel => {
-      return channel.includes(memberChannel);
-    });
-    msg.reply("Toma o link aí: " + screen_link[0]);
+    try {
+      var server = msg.member.guild.id; // Getting server's id
+      var member = msg.member.voiceChannel.toString(); //getting user who made the request
+      var memberChannel = member.substring(2, member.length - 1); //getting user's channel
+      msg.reply(
+        "Toma o link aí: " + server_link + server + "/" + memberChannel
+      );
+    } catch (e) {
+      console.log(e);
+      msg.reply("Entra no servidor, desgraçado(a)");
+      return;
+    }
   } else if (message.startsWith("AMON2")) {
     playSound(msg, "/audio/CaioAmonTomarNoCu.mp3");
   } else if (message.startsWith("AMON")) {
