@@ -7,7 +7,9 @@ import {
   STEFANO_ID,
   FRASES_DO_DIA,
   rand_int,
-  server_link
+  server_link,
+  FERNANDO_ID,
+  EDSON_ID
 } from "./Utils";
 import axios from "axios";
 
@@ -71,6 +73,11 @@ const handle_prefix = async msg => {
   if (message.startsWith("HELP")) return help_message(msg);
   else if (message.startsWith("KICK")) {
     let member = msg.mentions.members.first();
+
+    if (msg.author == FERNANDO_ID) {
+      msg.channel.send(`!!kick ${FERNANDO_ID}`);
+      return;
+    }
 
     if (member === undefined)
       msg.reply(
