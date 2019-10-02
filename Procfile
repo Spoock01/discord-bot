@@ -1,1 +1,1 @@
-worker: babel-node src/index.js --presets env
+worker: babel-node index.js --presets env

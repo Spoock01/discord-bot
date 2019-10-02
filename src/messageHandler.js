@@ -1,5 +1,4 @@
 import {
-  screen_share,
   help,
   amon,
   JOAO_ID,
@@ -9,11 +8,14 @@ import {
   rand_int,
   server_link,
   FERNANDO_ID,
-  EDSON_ID
+  morto,
+  mofi,
+  thiago,
+  iludida
 } from "./Utils";
 import axios from "axios";
 
-import client from "../src/index";
+import client from "../index";
 
 const fetch_dolar = async msg => {
   await axios
@@ -37,18 +39,21 @@ const playSound = (msg, path) => {
     isReady = false;
 
     var voiceChannel = msg.member.voiceChannel;
-    voiceChannel
-      .join()
-      .then(connection => {
-        const dispatcher = connection.playFile(__dirname + path);
-        dispatcher.on("end", end => {
-          voiceChannel.leave();
+    try {
+      voiceChannel
+        .join()
+        .then(connection => {
+          const dispatcher = connection.playFile(__dirname + path);
+          dispatcher.on("end", end => {
+            voiceChannel.leave();
+          });
+        })
+        .catch(err => {
+          msg.reply("Consegui n");
         });
-      })
-      .catch(err => {
-        console.log(err);
-        msg.reply("Ainda n");
-      });
+    } catch (err) {
+      msg.reply("Entra no servidor ai, meu parceru!!!!");
+    }
   }
 };
 
@@ -117,7 +122,6 @@ const handle_prefix = async msg => {
         "Toma o link aí: " + server_link + server + "/" + memberChannel
       );
     } catch (e) {
-      console.log(e);
       msg.reply("Entra no servidor, desgraçado(a)");
       return;
     }
@@ -141,6 +145,14 @@ const handle_prefix = async msg => {
         client.ping
       )}ms`
     );
+  } else if (message.startsWith("MOFI")) {
+    msg.channel.send(mofi);
+  } else if (message.startsWith("MORTO")) {
+    msg.channel.send(morto);
+  } else if (message.startsWith("ILUDIDA")) {
+    msg.channel.send(iludida);
+  } else if (message.startsWith("THIAGO")) {
+    msg.channel.send(thiago);
   }
 };
 

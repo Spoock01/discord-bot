@@ -1,6 +1,6 @@
 import Discord from "discord.js";
-import { token } from "./config.json";
-import handle_message from "./messageHandler";
+import { token } from "./src/config.json";
+import handle_message from "./src/messageHandler";
 
 const bot = new Discord.Client();
 

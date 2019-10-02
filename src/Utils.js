@@ -37,6 +37,10 @@ const STEFANO_ID = "<@211248047026470912>";
 const THIAGO_ID = "<@218204996007755787>";
 
 const deborah_prato = `Venha fazer seu trabalho, ${DEBORAH_ID}! https://i.imgur.com/6atgasg.jpg`;
+const iludida = "https://i.imgur.com/CSpcli7.jpg";
+const mofi = "https://i.imgur.com/JYqAczJ.jpg";
+const morto = "https://i.imgur.com/I6NqBAn.jpg";
+const thiago = "https://i.imgur.com/hM5ZzVJ.jpg";
 const amon = `${AMON_ID} https://instagram.fjpa1-1.fna.fbcdn.net/vp/bd4c85fa0a122541ce2ba498c220dff1/5DF14C5C/t51.2885-15/e35/38789722_456161948216894_7148504665349792788_n.jpg?_nc_ht=instagram.fjpa1-1.fna.fbcdn.net&_nc_cat=102`;
 
 var FRASES_DO_DIA = [
@@ -72,5 +76,9 @@ export {
   deborah_prato,
   FRASES_DO_DIA,
   rand_int,
-  server_link
+  server_link,
+  thiago,
+  morto,
+  mofi,
+  iludida
 };
