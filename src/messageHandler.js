@@ -1,4 +1,4 @@
-import { playSound } from "./PlayAudio";
+import { playSound, playStream } from "./PlayAudio";
 import { kickUser } from "./MainCommands";
 import { isImageCommand } from "./ImageCommands";
 import { help } from "./Utils";
@@ -30,11 +30,15 @@ const meDesculpaCommand = msg => {
 };
 
 const prefixCommands = async msg => {
-  var message = msg.content.replace("!!", "").toUpperCase();
+  var message = msg.content.replace("!!", "");
 
-  isImageCommand(message);
-
-  if (startsWith(message, "HELP")) return helpCommand(msg);
+  if (startsWith(message, "PLAY")) {
+    playStream(msg, message, "play");
+  } else if (startsWith(message, "SKIP")) {
+    playStream(msg, message, "skip");
+  } else if (startsWith(message, "STOP")) {
+    playStream(msg, message, "stop");
+  } else if (startsWith(message, "HELP")) return helpCommand(msg);
   else if (startsWith(message, "KICK")) {
     kickUser(msg);
   } else if (startsWith(message, "SCREEN")) {

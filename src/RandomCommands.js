@@ -30,6 +30,7 @@ const fraseDoDia = msg => {
 };
 
 const startsWith = (message1, message2) => {
+  message1 = message1.toUpperCase();
   return message1.startsWith(message2);
 };
 

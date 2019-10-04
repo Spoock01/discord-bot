@@ -40,8 +40,7 @@ const imageList = [
 ];
 
 const isImageCommand = id => {
-  var result = imageList.find(element => element.id === id);
-  return result;
+  return imageList.find(element => element.id === id);
 };
 
 export { isImageCommand };

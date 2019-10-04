@@ -17,7 +17,6 @@
     "discord.js": "^11.5.1",
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "^4.0.0",
-    "node-opus": "^0.3.0",
     "nodemon": "^1.19.1",
     "opusscript": "0.0.7",
     "ytdl-core": "^0.29.7"
