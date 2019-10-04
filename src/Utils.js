@@ -1,17 +1,4 @@
-const server_link = "https://discordapp.com/channels/";
-
-const screen_share = [
-  "https://discordapp.com/channels/585955575284760725/585958284813664256",
-  "https://discordapp.com/channels/585955575284760725/585955575787945987",
-  "https://discordapp.com/channels/585955575284760725/594308781106659345",
-  "https://discordapp.com/channels/585955575284760725/602198275419799600",
-  "https://discordapp.com/channels/585955575284760725/585956960927612928",
-  "https://discordapp.com/channels/585955575284760725/586697423313829889",
-  "https://discordapp.com/channels/585955575284760725/585957151747604499",
-  "https://discordapp.com/channels/585955575284760725/585958168165613588",
-  "https://discordapp.com/channels/585955575284760725/585957180490907703",
-  "https://discordapp.com/channels/585955575284760725/585956959488966662"
-];
+const server_link = "https://discordapp.com/channels/"; // + serverID + channelID
 
 const help =
   "\
@@ -64,7 +51,6 @@ export {
   FERNANDO_ID,
   DEBORAH_ID,
   ILUZZY,
-  screen_share,
   help,
   amon,
   BOT_FAZ_DE_TUDO,
