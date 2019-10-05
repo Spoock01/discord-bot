@@ -19,6 +19,7 @@
     "ffmpeg-binaries": "^4.0.0",
     "nodemon": "^1.19.1",
     "opusscript": "0.0.7",
+    "yt-search": "^0.4.1",
     "ytdl-core": "^0.29.7"
   }
 }

@@ -38,6 +38,8 @@ const prefixCommands = async msg => {
     playStream(msg, message, "skip");
   } else if (startsWith(message, "STOP")) {
     playStream(msg, message, "stop");
+  } else if (startsWith(message, "QUEUE")) {
+    playStream(msg, message, "queue");
   } else if (startsWith(message, "HELP")) return helpCommand(msg);
   else if (startsWith(message, "KICK")) {
     kickUser(msg);

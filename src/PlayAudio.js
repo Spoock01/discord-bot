@@ -1,5 +1,6 @@
 import ytdl from "ytdl-core";
-import { Message } from "discord.js";
+import search from "yt-search";
+import Discord from "discord.js";
 
 var servers = {};
 
@@ -45,10 +46,30 @@ const play = (connection, msg) => {
   });
 };
 
-const playStream = (msg, args, command) => {
+const getUrl = async args => {
+  return new Promise((resolve, reject) => {
+    search(args, (err, res) => {
+      if (err) {
+        reject({
+          link: "Manda dnv ai, mermaum"
+        });
+      }
+      let videos = res.videos.slice(0, 1);
+      let url = "http://www.youtube.com" + videos[0].url;
+      resolve({
+        songName: videos[0].title,
+        link: url
+      });
+    });
+  });
+};
+
+const playStream = async (msg, args, command) => {
+  args = args.substring(4, args.length).trim();
+
   switch (command) {
     case "play":
-      var link = args.split(" ")[1];
+      var link = args;
 
       if (!link) {
         msg.reply("Manda um link ai, mermaum");
@@ -65,20 +86,24 @@ const playStream = (msg, args, command) => {
       var server = servers[msg.guild.id];
 
       var valid = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
-      if (!valid.test(link)) {
-        msg.reply("Tem coisa errada nesse link aí, mermaum");
-        return;
-      }
 
-      server.queue.push(link);
-
-      if (!msg.guild.voiceConnection)
-        msg.member.voiceChannel.join().then(connection => {
-          play(connection, msg);
+      if (valid.test(link)) {
+        server.queue.push(link);
+        if (!msg.guild.voiceConnection)
+          msg.member.voiceChannel.join().then(connection => {
+            play(connection, msg);
+          });
+      } else {
+        getUrl(link).then(message => {
+          msg.channel.send("Added: " + message.songName);
+          server.queue.push(message.link);
+          if (!msg.guild.voiceConnection)
+            msg.member.voiceChannel.join().then(connection => {
+              play(connection, msg);
+            });
         });
-      else {
-        console.log("tchau");
       }
+
       break;
     case "skip":
       var server = servers[msg.guild.id];
@@ -95,6 +120,25 @@ const playStream = (msg, args, command) => {
         msg.reply("vlw flws");
         server.dispatcher.end();
       }
+      break;
+    case "queue":
+      var server = servers[msg.guild.id];
+
+      if (server !== undefined) {
+        const embed = new Discord.RichEmbed()
+          .setTitle("Current queue!!")
+          .setColor(0x00ae86);
+
+        for (let i = 0; i < server.queue.length; i++) {
+          console.log(server.queue[i]);
+          embed.addField(`#${i + 1}: ` + server.queue[i]);
+        }
+        // embed.addBlankField(true);
+        msg.channel.send(embed);
+      } else {
+        msg.channel.send("Tem música na fila n, meu parceru!");
+      }
+
       break;
   }
 };

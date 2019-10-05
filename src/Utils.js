@@ -1,11 +1,4 @@
-const server_link = "https://discordapp.com/channels/"; // + serverID + channelID
-
-const help =
-  "\
-Use !! antes de qualquer comando! \n \
-\n Lista de Comandos \n\n\
-record, end, screen, kick @nick, amon, frasedodia\n\
-";
+import Discord from "discord.js";
 
 const AMON_ID = "<@281240158836097025>";
 const ARTHUR_ID = "<@297154991175630848>";
@@ -22,6 +15,95 @@ const MUSICA = "<@235088799074484224>";
 const PEDRO_ID = "<@204384301171736576>";
 const STEFANO_ID = "<@211248047026470912>";
 const THIAGO_ID = "<@218204996007755787>";
+
+const server_link = "https://discordapp.com/channels/"; // + serverID + channelID
+
+const help = {
+  embed: {
+    title: "Comandos!!",
+    author: {
+      name: "BotFazDeTudo"
+    },
+    fields: [
+      {
+        name: "— Song —",
+        value: "» play link ou nome da música",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» skip",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» stop",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» queue",
+        inline: false
+      },
+      {
+        name: "— Comuns —",
+        value: "» screen",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» help",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» dolar",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» frasedodia",
+        inline: false
+      },
+      {
+        name: "— Memes —",
+        value: "» Amon",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» pratos",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» mofi",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» thiago",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» morto",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» iludida",
+        inline: false
+      },
+      {
+        name: "\n\u200b",
+        value: "» stfn",
+        inline: false
+      }
+    ],
+    description: "Antes de qualquer comando use !!"
+  }
+};
 
 const deborah_prato = `Venha fazer seu trabalho, ${DEBORAH_ID}! https://i.imgur.com/6atgasg.jpg`;
 const iludida = "https://i.imgur.com/CSpcli7.jpg";
