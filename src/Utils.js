@@ -26,22 +26,22 @@ const help = {
     },
     fields: [
       {
-        name: "— Song —",
+        name: "— Música —",
         value: "» play link ou nome da música",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» skip",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» stop",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» queue",
         inline: false
       },
@@ -51,17 +51,17 @@ const help = {
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» help",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» dolar",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» frasedodia",
         inline: false
       },
@@ -71,32 +71,32 @@ const help = {
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» pratos",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» mofi",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» thiago",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» morto",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» iludida",
         inline: false
       },
       {
-        name: "\n\u200b",
+        name: "\u200b",
         value: "» stfn",
         inline: false
       }

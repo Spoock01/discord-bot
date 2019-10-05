@@ -40,7 +40,7 @@ const imageList = [
 ];
 
 const isImageCommand = id => {
-  return imageList.find(element => element.id === id);
+  return imageList.find(element => element.id === id.toUpperCase());
 };
 
 export { isImageCommand };
