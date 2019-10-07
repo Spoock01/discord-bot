@@ -1,6 +1,7 @@
 import Discord from "discord.js";
-import { token } from "./src/config.json";
 import handle_message from "./src/messageHandler";
+
+require("dotenv").config();
 
 const bot = new Discord.Client();
 
@@ -12,6 +13,6 @@ bot.on("message", msg => {
   handle_message(msg);
 });
 
-bot.login(token);
+bot.login(process.env.token);
 
 export default bot;
