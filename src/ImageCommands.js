@@ -1,37 +1,37 @@
 import {
-  amon,
-  deborah_prato,
+  AMON,
+  DEBORAH_PRATO,
   STEFANO_ID,
-  morto,
-  mofi,
-  thiago,
-  iludida
+  MORTO,
+  MOFI,
+  THIAGO,
+  ILUDIDA
 } from "./Utils";
 
 const imageList = [
   {
     id: "AMON",
-    response: amon
+    response: AMON
   },
   {
     id: "PRATOS",
-    response: deborah_prato
+    response: DEBORAH_PRATO
   },
   {
     id: "MOFI",
-    response: mofi
+    response: MOFI
   },
   {
     id: "MORTO",
-    response: morto
+    response: MORTO
   },
   {
     id: "ILUDIDA",
-    response: iludida
+    response: ILUDIDA
   },
   {
     id: "THIAGO",
-    response: thiago
+    response: THIAGO
   },
   {
     id: "STFN",

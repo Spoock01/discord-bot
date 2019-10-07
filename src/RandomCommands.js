@@ -1,12 +1,14 @@
 import axios from "axios";
+import bot from "../index";
+import Discord from "discord.js";
 
-import { FRASES_DO_DIA, rand_int, server_link } from "./Utils";
+import { FRASES_DO_DIA, rand_int, SERVER_LINK } from "./Utils";
 
 const ping = async msg => {
   const m = await msg.channel.send("Ping?");
   m.edit(
     `Pong! A Latência é ${m.createdTimestamp -
-      msg.createdTimestamp}ms. A Latencia da API é ${Math.round(client.ping)}ms`
+      msg.createdTimestamp}ms. A Latencia da API é ${Math.round(bot.ping)}ms`
   );
 };
 
@@ -39,8 +41,18 @@ const screenHandler = msg => {
     var server = msg.member.guild.id; // Getting server's id
     var member = msg.member.voiceChannel.toString(); //getting user who made the request
     var memberChannel = member.substring(2, member.length - 1); //getting user's channel
-    msg.reply("Toma o link aí: " + server_link + server + "/" + memberChannel);
+
+    const embed = new Discord.RichEmbed()
+      .setTitle("Toma o link aí!!")
+      .setColor(0x00ae86);
+    var link = SERVER_LINK + server + "/" + memberChannel;
+    var serverName = msg.member.voiceChannel.name;
+
+    embed.addField(`Servidor: ${serverName}`, link, false);
+
+    msg.channel.send(embed);
   } catch (e) {
+    console.log(e);
     msg.reply("Entra no servidor, desgraçado(a)");
     return;
   }

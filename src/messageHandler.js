@@ -1,7 +1,7 @@
 import { playSound, playStream } from "./PlayAudio";
 import { kickUser } from "./MainCommands";
 import { isImageCommand } from "./ImageCommands";
-import { help } from "./Utils";
+import { HELP } from "./Utils";
 import {
   fetchDolar,
   startsWith,
@@ -11,7 +11,7 @@ import {
 } from "./RandomCommands";
 
 const helpCommand = msg => {
-  msg.channel.send(help);
+  msg.channel.send(HELP);
 };
 
 const meDesculpaCommand = msg => {

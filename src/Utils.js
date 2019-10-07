@@ -1,5 +1,3 @@
-import Discord from "discord.js";
-
 const AMON_ID = "<@281240158836097025>";
 const ARTHUR_ID = "<@297154991175630848>";
 const BOT_FAZ_DE_TUDO = "<@619256163900588051>";
@@ -16,101 +14,43 @@ const PEDRO_ID = "<@204384301171736576>";
 const STEFANO_ID = "<@211248047026470912>";
 const THIAGO_ID = "<@218204996007755787>";
 
-const server_link = "https://discordapp.com/channels/"; // + serverID + channelID
+const SERVER_LINK = "https://discordapp.com/channels/"; // + serverID + channelID
 
-const help = {
-  embed: {
-    title: "Comandos!!",
-    author: {
-      name: "BotFazDeTudo"
-    },
-    fields: [
+const HELP = {
+  "content": "",
+  "embed": {
+    "fields": [
       {
-        name: "— Música —",
-        value: "» play link ou nome da música",
-        inline: false
+        "name": "— Música —",
+        "value": "» play link ou nome da música\n» skip\n» stop\n» queue",
+        "inline": false
       },
       {
-        name: "\u200b",
-        value: "» skip",
-        inline: false
+        "name": "— Comuns —",
+        "value": "» screen\n​» help\n​» dolar\n» frasedodia",
+        "inline": false
       },
       {
-        name: "\u200b",
-        value: "» stop",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» queue",
-        inline: false
-      },
-      {
-        name: "— Comuns —",
-        value: "» screen",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» help",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» dolar",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» frasedodia",
-        inline: false
-      },
-      {
-        name: "— Memes —",
-        value: "» Amon",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» pratos",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» mofi",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» thiago",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» morto",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» iludida",
-        inline: false
-      },
-      {
-        name: "\u200b",
-        value: "» stfn",
-        inline: false
+        "name": "— Memes —",
+        "value": "» amon\n​» pratos\n​» mofi\n​» thiago\n​» morto\n​» iludida\n» stfn",
+        "inline": false
       }
     ],
-    description: "Antes de qualquer comando use !!"
+    "title": "**Comandos!!**",
+    "description": "Antes de qualquer comando use !!",
+    "author": {
+      "name": "BotFazDeTudo"
+    },
+    "color": 5198940
   }
 };
 
-const deborah_prato = `Venha fazer seu trabalho, ${DEBORAH_ID}! https://i.imgur.com/6atgasg.jpg`;
-const iludida = "https://i.imgur.com/CSpcli7.jpg";
-const mofi = "https://i.imgur.com/JYqAczJ.jpg";
-const morto = "https://i.imgur.com/I6NqBAn.jpg";
-const thiago = "https://i.imgur.com/hM5ZzVJ.jpg";
-const amon = `${AMON_ID} https://instagram.fjpa1-1.fna.fbcdn.net/vp/bd4c85fa0a122541ce2ba498c220dff1/5DF14C5C/t51.2885-15/e35/38789722_456161948216894_7148504665349792788_n.jpg?_nc_ht=instagram.fjpa1-1.fna.fbcdn.net&_nc_cat=102`;
+const DEBORAH_PRATO = `Venha fazer seu trabalho, ${DEBORAH_ID}! https://i.imgur.com/6atgasg.jpg`;
+const ILUDIDA = "https://i.imgur.com/CSpcli7.jpg";
+const MOFI = "https://i.imgur.com/JYqAczJ.jpg";
+const MORTO = "https://i.imgur.com/I6NqBAn.jpg";
+const THIAGO = "https://i.imgur.com/hM5ZzVJ.jpg";
+const AMON = `${AMON_ID} https://instagram.fjpa1-1.fna.fbcdn.net/vp/bd4c85fa0a122541ce2ba498c220dff1/5DF14C5C/t51.2885-15/e35/38789722_456161948216894_7148504665349792788_n.jpg?_nc_ht=instagram.fjpa1-1.fna.fbcdn.net&_nc_cat=102`;
 
 var FRASES_DO_DIA = [
   "Com calma e jeito chega-se ao cu de qualquer sujeito. - Amon, 2019",
@@ -133,20 +73,20 @@ export {
   FERNANDO_ID,
   DEBORAH_ID,
   ILUZZY,
-  help,
-  amon,
+  HELP,
+  AMON,
   BOT_FAZ_DE_TUDO,
   EDSON_ID,
   YURE_ID,
   JOAOVITOR_ID,
   PEDRO_ID,
   STEFANO_ID,
-  deborah_prato,
+  DEBORAH_PRATO,
   FRASES_DO_DIA,
   rand_int,
-  server_link,
-  thiago,
-  morto,
-  mofi,
-  iludida
+  SERVER_LINK,
+  THIAGO,
+  MORTO,
+  MOFI,
+  ILUDIDA
 };

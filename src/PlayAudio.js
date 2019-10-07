@@ -32,9 +32,11 @@ const playSound = (msg, path) => {
 
 const play = (connection, msg) => {
   var server = servers[msg.guild.id];
+
   server.dispatcher = connection.playStream(
-    ytdl(server.queue[0], { filter: "audioonly" })
+    ytdl(server.queue[0].link.toString(), { filter: "audioonly" })
   );
+
   server.queue.shift();
 
   server.dispatcher.on("end", () => {
@@ -46,7 +48,7 @@ const play = (connection, msg) => {
   });
 };
 
-const getUrl = async args => {
+const getUrl = async (args, requester) => {
   return new Promise((resolve, reject) => {
     search(args, (err, res) => {
       if (err) {
@@ -55,10 +57,14 @@ const getUrl = async args => {
         });
       }
       let videos = res.videos.slice(0, 1);
-      let url = "http://www.youtube.com" + videos[0].url;
+      let url = args;
+
+      url = "http://www.youtube.com" + videos[0].url;
+
       resolve({
         songName: videos[0].title,
-        link: url
+        link: url,
+        requestedBy: requester
       });
     });
   });
@@ -85,24 +91,16 @@ const playStream = async (msg, args, command) => {
 
       var server = servers[msg.guild.id];
 
-      var valid = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+      getUrl(link, msg.author.username).then(message => {
+        msg.channel.send("Added: " + message.songName);
 
-      if (valid.test(link)) {
-        server.queue.push(link);
+        server.queue.push(message);
+
         if (!msg.guild.voiceConnection)
           msg.member.voiceChannel.join().then(connection => {
             play(connection, msg);
           });
-      } else {
-        getUrl(link).then(message => {
-          msg.channel.send("Added: " + message.songName);
-          server.queue.push(message.link);
-          if (!msg.guild.voiceConnection)
-            msg.member.voiceChannel.join().then(connection => {
-              play(connection, msg);
-            });
-        });
-      }
+      });
 
       break;
     case "skip":
@@ -130,11 +128,17 @@ const playStream = async (msg, args, command) => {
           .setColor(0x00ae86);
 
         for (let i = 0; i < server.queue.length; i++) {
-          console.log(server.queue[i]);
-          embed.addField(`#${i + 1}: ` + server.queue[i]);
+          var song = server.queue[i];
+
+          embed.addField(
+            `#${i + 1}: ${song.songName}\nRequested by: ${song.requestedBy}`,
+            song.link,
+            false
+          );
         }
-        // embed.addBlankField(true);
-        msg.channel.send(embed);
+
+        if (server.queue.length == 0) msg.channel.send("Sem músicas na fila!");
+        else msg.channel.send(embed);
       } else {
         msg.channel.send("Tem música na fila n, meu parceru!");
       }
