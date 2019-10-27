@@ -1,5 +1,5 @@
 import { playSound, playStream } from "./PlayAudio";
-import { kickUser } from "./MainCommands";
+import { kickUser, randomInterval, randomList } from "./MainCommands";
 import { isImageCommand } from "./ImageCommands";
 import { HELP } from "./Utils";
 import {
@@ -30,7 +30,7 @@ const meDesculpaCommand = msg => {
 };
 
 const prefixCommands = async msg => {
-  var message = msg.content.replace("!!", "");
+  var message = msg.content.replace(".", "");
 
   if (startsWith(message, "PLAY")) {
     playStream(msg, message, "play");
@@ -57,14 +57,18 @@ const prefixCommands = async msg => {
     try {
       var { response } = isImageCommand(message);
       msg.channel.send(response);
-    } catch (err) {
-      msg.reply("Esse comando existe ainda n, parceru");
+    } catch (e) {
+      if (startsWith(message, "RANDINT")) {
+        randomInterval(message, msg);
+      } else if (startsWith(message, "RANDLIST")) {
+        randomList(message, msg);
+      }
     }
   }
 };
 
 const handle_message = msg => {
-  if (msg.content.startsWith("!!")) {
+  if (msg.content.startsWith(".")) {
     prefixCommands(msg);
   } else if (msg.content.includes("meu patrão")) {
     msg.reply(
@@ -72,7 +76,7 @@ const handle_message = msg => {
        Vá trabalhar, vagabundo do carai!"
     );
   } else if (meDesculpaCommand(msg)) {
-    msg.channel.send(`!!kick ${msg.author}`);
+    msg.channel.send(`.kick ${msg.author}`);
   }
 };
 

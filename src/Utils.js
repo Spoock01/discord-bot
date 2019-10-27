@@ -17,31 +17,33 @@ const THIAGO_ID = "<@218204996007755787>";
 const SERVER_LINK = "https://discordapp.com/channels/"; // + serverID + channelID
 
 const HELP = {
-  "content": "",
-  "embed": {
-    "fields": [
+  content: "",
+  embed: {
+    fields: [
       {
-        "name": "— Música —",
-        "value": "» play link ou nome da música\n» skip\n» stop\n» queue",
-        "inline": false
+        name: "— Música —",
+        value: "» play\n» skip\n» stop\n» queue",
+        inline: false
       },
       {
-        "name": "— Comuns —",
-        "value": "» screen\n​» help\n​» dolar\n» frasedodia",
-        "inline": false
+        name: "— Comuns —",
+        value:
+          "» screen\n​» help\n​» dolar\n» frasedodia\n» randint\n» randlist",
+        inline: false
       },
       {
-        "name": "— Memes —",
-        "value": "» amon\n​» pratos\n​» mofi\n​» thiago\n​» morto\n​» iludida\n» stfn",
-        "inline": false
+        name: "— Memes —",
+        value:
+          "» amon\n​» pratos\n​» mofi\n​» thiago\n​» morto\n​» iludida\n» stfn",
+        inline: false
       }
     ],
-    "title": "**Comandos!!**",
-    "description": "Antes de qualquer comando use !!",
-    "author": {
-      "name": "BotFazDeTudo"
+    title: "**Comandos!!**",
+    description: 'Antes de qualquer comando use "." (sem aspas)',
+    author: {
+      name: "BotFazDeTudo"
     },
-    "color": 5198940
+    color: 5198940
   }
 };
 

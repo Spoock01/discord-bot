@@ -13,10 +13,10 @@ const imageList = [
     id: "AMON",
     response: AMON
   },
-  {
-    id: "PRATOS",
-    response: DEBORAH_PRATO
-  },
+  // {
+  //   id: "PRATOS",
+  //   response: DEBORAH_PRATO
+  // },
   {
     id: "MOFI",
     response: MOFI

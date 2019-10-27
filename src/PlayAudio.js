@@ -37,6 +37,7 @@ const play = (connection, msg) => {
     ytdl(server.queue[0].link.toString(), { filter: "audioonly" })
   );
 
+  msg.channel.send("Now playing: " + server.queue[0].songName);
   server.queue.shift();
 
   server.dispatcher.on("end", () => {
@@ -55,17 +56,26 @@ const getUrl = async (args, requester) => {
         reject({
           link: "Manda dnv ai, mermaum"
         });
+      } else {
+        let videos = res.videos.slice(0, 1);
+        let url = args;
+
+        if (videos[0] == undefined || videos[0].url.length > 20) {
+          console.log("Reject");
+          reject({
+            link: "Achei n"
+          });
+        } else {
+          url = "http://www.youtube.com" + videos[0].url;
+
+          console.log("Url Link: " + url);
+          resolve({
+            songName: videos[0].title,
+            link: url,
+            requestedBy: requester
+          });
+        }
       }
-      let videos = res.videos.slice(0, 1);
-      let url = args;
-
-      url = "http://www.youtube.com" + videos[0].url;
-
-      resolve({
-        songName: videos[0].title,
-        link: url,
-        requestedBy: requester
-      });
     });
   });
 };
@@ -77,6 +87,7 @@ const playStream = async (msg, args, command) => {
     case "play":
       var link = args;
 
+      console.log(msg.guild.voiceConnection);
       if (!link) {
         msg.reply("Manda um link ai, mermaum");
         return;
@@ -91,16 +102,20 @@ const playStream = async (msg, args, command) => {
 
       var server = servers[msg.guild.id];
 
-      getUrl(link, msg.author.username).then(message => {
-        msg.channel.send("Added: " + message.songName);
+      getUrl(link, msg.author.username)
+        .then(message => {
+          msg.channel.send("Added: " + message.songName);
 
-        server.queue.push(message);
+          server.queue.push(message);
 
-        if (!msg.guild.voiceConnection)
-          msg.member.voiceChannel.join().then(connection => {
-            play(connection, msg);
-          });
-      });
+          if (!msg.guild.voiceConnection)
+            msg.member.voiceChannel.join().then(connection => {
+              play(connection, msg);
+            });
+        })
+        .catch(err => {
+          msg.reply(err.link);
+        });
 
       break;
     case "skip":

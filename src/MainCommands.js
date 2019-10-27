@@ -35,4 +35,50 @@ const kickUser = msg => {
   }
 };
 
-export { kickUser };
+const randomInterval = (message, msg) => {
+  message = message.toUpperCase();
+
+  var numbers = message
+    .replace("RANDINT", "")
+    .trim()
+    .split(" ");
+
+  if (numbers.length < 2) {
+    msg.reply("Faltando intervalo!");
+  } else {
+    var first = parseInt(numbers[0]);
+    var second = parseInt(numbers[1]);
+
+    if (first > second) {
+      [first, second] = [second, first];
+    }
+
+    var response = first + Math.floor(Math.random() * (second - first + 1));
+
+    if (isNaN(response)) {
+      msg.reply("Tá querendo trollar é? Manda só número, palhaço(a)");
+    } else {
+      msg.reply(response);
+    }
+  }
+};
+
+const randomList = (message, msg) => {
+  message = message.toUpperCase();
+  var numbers = message
+    .replace("RANDLIST", "")
+    .trim()
+    .split(" ");
+
+  if (numbers[0] == "") {
+    // msg.reply("Tá faltando número aí. Manda direito");
+    msg.reply(
+      "Mermão, bote os nomes separados por espaço aí. E outra coisa, n me faça perder tempo n, seu animal."
+    );
+  } else {
+    var response = Math.floor(Math.random() * numbers.length);
+    msg.reply(numbers[response]);
+  }
+};
+
+export { kickUser, randomInterval, randomList };
