@@ -1,5 +1,10 @@
 import { playSound, playStream } from "./PlayAudio";
-import { kickUser, randomInterval, randomList } from "./MainCommands";
+import {
+  kickUser,
+  randomInterval,
+  randomList,
+  getChampionsList
+} from "./MainCommands";
 import { isImageCommand } from "./ImageCommands";
 import { HELP } from "./Utils";
 import {
@@ -62,6 +67,8 @@ const prefixCommands = async msg => {
         randomInterval(message, msg);
       } else if (startsWith(message, "RANDLIST")) {
         randomList(message, msg);
+      } else if (startsWith(message, "LOL")) {
+        getChampionsList(message, msg);
       }
     }
   }

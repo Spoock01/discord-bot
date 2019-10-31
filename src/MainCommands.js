@@ -1,4 +1,6 @@
-import { JOAO_ID, FERNANDO_ID } from "./Utils";
+import { JOAO_ID, FERNANDO_ID, LOL } from "./Utils";
+import axios from "axios";
+import Discord from "discord.js";
 
 const kickUser = msg => {
   let member = msg.mentions.members.first();
@@ -81,4 +83,67 @@ const randomList = (message, msg) => {
   }
 };
 
-export { kickUser, randomInterval, randomList };
+const getChampionsList = async (champion, msg) => {
+  champion = champion.replace("lol", "").trim();
+
+  if (champion == "") {
+    msg.reply("Faltou digitar o champion ou começo do nome do champion");
+    return;
+  }
+
+  const opggLink = "https://br.op.gg/champion/";
+
+  var currentPatch = await axios.get(
+    "https://ddragon.leagueoflegends.com/api/versions.json"
+  );
+
+  currentPatch = currentPatch.data[0];
+
+  const championsJson = await axios.get(
+    "http://ddragon.leagueoflegends.com/cdn/" +
+      currentPatch +
+      "/data/en_US/champion.json"
+  );
+
+  const championsList = championsJson.data.data;
+  var responseList = [];
+  var response = LOL;
+
+  response.embed.fields[0].value = "";
+
+  Object.keys(championsList).forEach(key => {
+    key = key.toLowerCase();
+    champion = champion.toLowerCase();
+
+    if (champion.length >= 3 && key.includes(champion)) {
+      responseList.push(opggLink + key);
+    } else if (champion.length < 3 && champion.length > 0) {
+      if (key.startsWith(champion)) {
+        responseList.push(key);
+      }
+    }
+  });
+
+  if (responseList.length == 1 && champion.length >= 3) {
+    response.embed.title = "**Toma o link!**";
+    response.embed.fields[0].name = "- Link -";
+
+    if (!responseList[0].includes(opggLink)) {
+      responseList[0] = opggLink + responseList[0];
+    }
+    response.embed.fields[0].value = responseList[0];
+
+    msg.channel.send(response);
+  } else if (responseList.length >= 1) {
+    response.embed.title = "**Toma a lista!**";
+    response.embed.fields[0].name = "- Lista -";
+    responseList.forEach(champion => {
+      response.embed.fields[0].value += "» " + champion + "\n";
+    });
+    msg.channel.send(response);
+  } else msg.reply("Não achei");
+
+  response = undefined;
+};
+
+export { kickUser, randomInterval, randomList, getChampionsList };

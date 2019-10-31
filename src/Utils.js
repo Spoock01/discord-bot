@@ -47,6 +47,25 @@ const HELP = {
   }
 };
 
+const LOL = {
+  content: "",
+  embed: {
+    fields: [
+      {
+        name: "",
+        value: "",
+        inline: false
+      }
+    ],
+    title: "",
+    // description: 'Antes de qualquer comando use "." (sem aspas)',
+    author: {
+      name: "BotFazDeTudo"
+    },
+    color: 5198940
+  }
+};
+
 const DEBORAH_PRATO = `Venha fazer seu trabalho, ${DEBORAH_ID}! https://i.imgur.com/6atgasg.jpg`;
 const ILUDIDA = "https://i.imgur.com/CSpcli7.jpg";
 const MOFI = "https://i.imgur.com/JYqAczJ.jpg";
@@ -90,5 +109,6 @@ export {
   THIAGO,
   MORTO,
   MOFI,
-  ILUDIDA
+  ILUDIDA,
+  LOL
 };

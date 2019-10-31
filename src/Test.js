@@ -1,48 +1,48 @@
-// Math.floor(Math.random() * range);
+const axios = require("axios");
+import Discord from "discord.js";
 
-const randomInterval = (message, msg) => {
-  message = "RAND 10 2 20";
-  var numbers = message
-    .replace("RAND", "")
-    .trim()
-    .split(" ");
+const getChampionsList = async (champion, msg) => {
+  const opggLink = "https://br.op.gg/champion/";
 
-  if (numbers.length < 2) {
-    // msg.reply("Tá faltando número aí. Manda direito");
-    console.log("Faltando numero");
-  } else {
-    var first = parseInt(numbers[0]);
-    var second = parseInt(numbers[1]);
+  var currentPatch = await axios.get(
+    "https://ddragon.leagueoflegends.com/api/versions.json"
+  );
 
-    if (first > second) {
-      [first, second] = [second, first];
+  currentPatch = currentPatch.data[0];
+
+  const championsJson = await axios.get(
+    "http://ddragon.leagueoflegends.com/cdn/" +
+      currentPatch +
+      "/data/en_US/champion.json"
+  );
+
+  const championsList = championsJson.data.data;
+  var responseList = [];
+
+  Object.keys(championsList).forEach(key => {
+    key = key.toLowerCase();
+    champion = champion.toLowerCase();
+
+    if (champion.length >= 3 && key.includes(champion)) {
+      responseList.push(opggLink + key);
+    } else if (champion.length < 3 && champion.length > 0) {
+      if (key.startsWith(champion)) {
+        responseList.push(key);
+      }
     }
+  });
 
-    var response = first + Math.floor(Math.random() * (second - first + 1));
+  if (responseList.length == 1) msg.reply(responseList[0]);
+  else if (responseList.length > 1) {
+    const embed = new Discord.RichEmbed()
+      .setTitle("Lista de Champions!!")
+      .setColor(0x00ae86);
 
-    if (isNaN(response)) {
-      console.log("Tá querendo trollar é? Manda só número, palhaço(a)");
-    } else {
-      console.log(response);
-    }
-  }
+    responseList.forEach((champion, index) => {
+      embed.addField(`#${index + 1}: ${champion}\n`, "Teste", false);
+    });
+    msg.reply(embed);
+  } else msg.reply("Não achei");
 };
 
-const randomList = (message, msg) => {
-  var numbers = message
-    .replace("RAND", "")
-    .trim()
-    .split(" ");
-
-  if (numbers[0] == "") {
-    // msg.reply("Tá faltando número aí. Manda direito");
-    console.log(
-      "Mermão, bote os nomes separados por espaço aí. E outra coisa, n me faça perder tempo n, seu animal."
-    );
-  } else {
-    var response = Math.floor(Math.random() * numbers.length);
-    console.log(numbers[response]);
-  }
-};
-
-randomList("");
+getChampionsList("a");
